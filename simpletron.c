@@ -30,25 +30,7 @@
 
 
 
-char* operation(char* op){
-    char* opc;
-    int pos;
-    
-    opc = (char *) malloc( sizeof(char) );
-    opc[0] = '\0';
-    
-    if(op[0] != '\0' || op[0] != ' '){
-        pos = 0;
-        do{
-            opc = (char *) malloc( (sizeof(char) * (pos+1)) );
-            opc[pos] = op[pos];
-            ++pos;
-        }while(op[pos] != ' ' || op[pos] != '\0');
-        op[pos] = '\0';
-    }
-    
-    return opc;
-}
+
 
 
 Bool readFile(char* filename){
@@ -61,7 +43,9 @@ Bool readFile(char* filename){
     if(f == NULL) return False;
     
     while( (read = getline(&linestr, &len, f)) != -1){
-        printf("Linha: %s\n",operation(linestr));
+        
+        int op = (int) (linestr[1] - 48)*10 + (linestr[2] - 48);
+        printf("entrada: %d\n",op);
     }
     
     fclose(f);
@@ -70,6 +54,10 @@ Bool readFile(char* filename){
 }
 
 int main() {
-    readFile("input.ass");
+    if(readFile("sum2num.ass") == True){
+        printf("Success!\n");
+    }else{
+        printf("Error.\n");
+    }
     return 0;
 }
