@@ -1,6 +1,7 @@
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include "interface.h"
 
 #define Bool short
 #define True 1
@@ -53,7 +54,7 @@ Bool readFile(char* filename){
      return True;
 }
 
-int main() {
+int main(int argv, char* argc) {
     if(readFile("sum2num.ass") == True){
         printf("Success!\n");
     }else{
